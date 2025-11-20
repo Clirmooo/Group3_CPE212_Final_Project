@@ -1,0 +1,25 @@
+---
+- name: Prepare project directory for Docker build
+  become_user: "{{ ansible_user }}"
+  ansible.builtin.file:
+    path: "/home/{{ ansible_user }}/group3_docker"
+    state: directory
+    mode: "0700"
+
+- name: Deploy Dockerfile to managed nodes
+  become_user: "{{ ansible_user }}"
+  ansible.builtin.copy:
+    src: Dockerfile
+    dest: "/home/{{ ansible_user }}/group3_docker/Dockerfile"
+    mode: "0600"
+
+- name: Upload website HTML content
+  become_user: "{{ ansible_user }}"
+  ansible.builtin.copy:
+    src: index.html
+    dest: "/home/{{ ansible_user }}/group3_docker/index.html"
+    mode: "0600"
+
+- name: Build custom Docker image for website
+  ansible.builtin.command:
+    cmd: docker build -t group3_docker_image "/home/{{ ansible_user }}/group3_docker"
