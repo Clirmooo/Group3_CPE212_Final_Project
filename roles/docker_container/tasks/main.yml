@@ -1,0 +1,23 @@
+---
+- name: Stop existing Docker Container (Ubuntu and CentOS)
+  ansible.builtin.command:
+    cmd: docker stop group3_website_container
+  ignore_errors: yes
+
+- name: Remove existing Docker Container (Ubuntu and CentOS)
+  ansible.builtin.command:
+    cmd: docker rm group3_website_container
+  ignore_errors: yes
+
+- name: Run Docker Container from built image (Ubuntu and CentOS)
+  ansible.builtin.command:
+    cmd: docker run -d -p 80:80 --name group3_website_container group3_docker_image
+
+- name: Check if Docker container is running
+  ansible.builtin.command:
+    cmd: docker ps
+  register: docker_running_status
+
+- name: Display running container list
+  ansible.builtin.debug:
+    var: docker_running_status.stdout

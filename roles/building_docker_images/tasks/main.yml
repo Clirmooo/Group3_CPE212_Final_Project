@@ -9,8 +9,8 @@
 - name: Deploy Dockerfile to managed nodes
   become_user: "{{ ansible_user }}"
   ansible.builtin.copy:
-    src: Dockerfile
-    dest: "/home/{{ ansible_user }}/group3_docker/Dockerfile"
+    src: dockerfile
+    dest: "/home/{{ ansible_user }}/group3_docker/dockerfile"
     mode: "0600"
 
 - name: Upload website HTML content
