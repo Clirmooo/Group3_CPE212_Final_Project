@@ -1,6 +1,6 @@
 # Group3 CPE212 Final Project
 
-For the project purposes only!
+For project purposes only!
 
 Member:
 - Lim, Justin Adrian
